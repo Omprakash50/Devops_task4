@@ -6,8 +6,8 @@ metadata:
     app: webserver
 spec:
   ports:
-    - port: 80
-      nodePort: 30001
+    - port: 8040
+      nodePort: 30005
   selector:
     type: html
   type: NodePort
@@ -44,7 +44,7 @@ spec:
       - image: omprakash1234/webserver
         name: webserver
         ports:
-        - containerPort: 80
+        - containerPort: 8040
           name: webserver
         volumeMounts:
         - name: webserver-pv
