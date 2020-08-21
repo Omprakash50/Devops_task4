@@ -1,24 +1,38 @@
-apiVersion: apps/v1 
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: httpd-deploy 
+  name: my-service
   labels:
-    app: webserver
-    type: html
+    app: webapp
 spec:
   selector:
+    app: webapp
+  type: NodePort
+  ports:
+    - nodePort: 31321
+      port: 81
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: myweb-deploy
+  labels:
+    app: webapp
+spec:
+  replicas: 2
+  selector:
     matchLabels:
-      type: html
+      app: webapp
   template:
     metadata:
+      name: myweb-image
       labels:
-        app: webserver
-        type: html
+        app: webapp
     spec:
       containers:
-      - image: omprakash1234/webserver
-        name: webserver
-        ports:
-        - containerPort: 80
-          name: webserver
+      - name: myweb-image
+        image: omprakash1234/webserver
+      
   
