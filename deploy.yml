@@ -24,7 +24,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: webapp-img
+      app: webapp
   template:
     metadata:
       name: myweb
@@ -32,5 +32,5 @@ spec:
         app: webapp
     spec:
       containers:
-      - name: myweb-image
+      - name: myweb-img
         image: omprakash1234/webserver
